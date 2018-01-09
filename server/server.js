@@ -25,10 +25,10 @@ io.on('connection', (socket)=>{
     //Emit custom events
     socket.emit('newMessage', generateMessage('Admin','Welcome to the chat app'));
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user has joined'));
-    socket.on('createMessage',  (message)=>{
+    socket.on('createMessage',  (message, callback)=>{
         console.log('sent from client',message);
         io.emit('newMessage',generateMessage(message.from,message.text));
-        
+        callback();
     });
 });//This basically fires up the content of the callback whenever an user gets connected to the server
 
