@@ -36,7 +36,7 @@ jQuery('#message-form').on('submit', (e)=>{
         from: 'tara',
         text: jQuery('[name=message]').val()
     }, ()=>{
-
+        jQuery('[name=message]').val('');
     });
 });
 
@@ -47,12 +47,15 @@ locationButton.on('click', ()=>{
     if(!navigator.geolocation){
         return alert("Please allow location access!");
     }
+    locationButton.attr('disabled', 'disabled').text('Sending');
     navigator.geolocation.getCurrentPosition( (position)=>{
         socket.emit('createLocationMessage', {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
         });
+        locationButton.removeAttr('disabled').text('Send Location');
     }, ()=>{
         alert("Unable to fetch location!");
+        locationButton.removeAttr('disabled').text('Send Location');
     });
 });
