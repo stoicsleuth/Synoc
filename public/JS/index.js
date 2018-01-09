@@ -3,8 +3,7 @@ var socket= io();
 socket.on('connect',()=>{
     console.log("Connected to server");
     // socket.emit('createMessage', {
-    //     from: 'tara',
-    //     text:'Hulo'
+    //     from: 'tara'
     // });
 });
 

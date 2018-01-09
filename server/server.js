@@ -2,7 +2,7 @@ const path = require('path');
 const http= require('http');
 const express= require('express');
 const socketIO= require('socket.io');
-
+const {generateMessage}=require('./utils/message');
 
 
 const publicPath = path.join(__dirname,'../public');
@@ -23,19 +23,12 @@ io.on('connection', (socket)=>{
         console.log("User got disconnected");
     })
     //Emit custom events
-        // socket.emit('newMessage', {
-        //     from: 'Tara',
-        //     text: 'Hey dude!',
-        //     time: Date.UTC()
-        // });
-
+    socket.emit('newMessage', generateMessage('Admin','Welcome to the chat app'));
+    socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user has joined'));
     socket.on('createMessage',  (message)=>{
         console.log('sent from client',message);
-        io.emit('newMessage',{
-            from: message.from,
-            text: message.text,
-            createdAt: new Date().getTime()
-        });
+        io.emit('newMessage',generateMessage(message.from,message.text));
+        
     });
 });//This basically fires up the content of the callback whenever an user gets connected to the server
 
