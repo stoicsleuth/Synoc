@@ -22,7 +22,23 @@ io.on('connection', (socket)=>{
     socket.on('disconnect', ()=>{
         console.log("User got disconnected");
     })
+    //Emit custom events
+        // socket.emit('newMessage', {
+        //     from: 'Tara',
+        //     text: 'Hey dude!',
+        //     time: Date.UTC()
+        // });
+
+    socket.on('createMessage',  (message)=>{
+        console.log('sent from client',message);
+        io.emit('newMessage',{
+            from: message.from,
+            text: message.text,
+            createdAt: new Date().getTime()
+        });
+    });
 });//This basically fires up the content of the callback whenever an user gets connected to the server
+
 
 
 server.listen(port, ()=>{
