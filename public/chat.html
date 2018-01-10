@@ -14,7 +14,7 @@
 </head>
 
 <body class="chat">
-    <div class="chat__sidebar">
+    <div class="chat__sidebar zero-width">
         <h3>People</h3>
         <div id="users"></div>
     </div>
@@ -38,9 +38,20 @@
     <div class="chatNotify display__none">
         <p>New Message!</p>
     </div>
+    <button id="showLeftPush">
+            <img src="menu-button.svg" alt="">
+    </button>
         
     
 </body>
+<script>
+
+showLeftPush.onclick = function() {
+	document.querySelector('.chat__sidebar').classList.toggle('zero-width');
+	
+};
+</script>
+
 
 <script id="message-template" type="text/template">
     <li class="message">
