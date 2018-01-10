@@ -23,7 +23,9 @@
     flex-direction: column;
   }
 
-
+  #showLeftPush{
+      display: none;
+  }
   button {
     border: none;
     background: #265f82;
