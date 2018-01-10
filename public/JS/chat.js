@@ -1,17 +1,69 @@
 var socket= io();
+var timer, timer2=null;
+//Implementing autoscrolling
+
+function scrollToBottom(){
+    var messages=jQuery("#messages");
+    var newMessage=messages.children('li:last-child');
+    //Heights
+    var clientHeight= messages.prop('clientHeight');
+    var scrollTop= messages.prop('scrollTop');
+    var scrollHeight= messages.prop('scrollHeight');
+    var newMessageHeight= newMessage.innerHeight();
+    var lastMessageHeight= newMessage.prev().innerHeight();
+
+    if(clientHeight+scrollTop+(newMessageHeight*3)>=scrollHeight){
+        messages.scrollTop(scrollHeight);
+        
+    }
+    if(clientHeight+scrollTop+200<scrollHeight){
+        
+        if (document.querySelector('.chatNotify').classList.contains('display__none')) {
+            document.querySelector('.chatNotify').classList.toggle('display__none');
+            timer=setTimeout(()=>{
+                document.querySelector('.chatNotify').classList.toggle('display__none');
+                window.clearTimeout(timer);
+            }, 4000);
+            
+        }
+        
+    }
+
+}
+
 
 socket.on('connect',()=>{
-    console.log("Connected to server");
+    var params = jQuery.deparam(window.location.search);
     // socket.emit('createMessage', {
     //     from: 'tara',
     //     text: "Hey dude"
     // }, ()=>{
     //     console.log("Gotcha!");
     // });
+    socket.emit('join', params, (err)=>{
+        if(err){
+            alert(err);
+            window.location.href='/';
+        }
+        else{
+            console.log('Nope');
+        }
+    });
 });
 
 socket.on('disconnect', ()=>{
     console.log("Connection terminated");
+});
+
+//update user list
+socket.on('updateUserList', (users)=>{
+    var ol = jQuery('<ol></ol>');
+    users.forEach((user)=>{
+        ol.append(jQuery('<li></li>').text(user));
+        console.log(user);
+
+    });
+    jQuery('#users').html(ol);
 });
 
 socket.on('newMessage', (message)=>{
@@ -24,7 +76,7 @@ socket.on('newMessage', (message)=>{
     });
 
     jQuery('#messages').append(html);
-
+    scrollToBottom();
     //var formattedTime= moment(message.createdAt).format('h:mm a');
     // console.log("Got a new message!", message);
     // var li= jQuery('<li></li>');
@@ -46,12 +98,13 @@ socket.on('newLocationMessage', (message)=>{
         // a.attr('href',message.url);
         // li.append(a);
     jQuery('#messages').append(html);
+    scrollToBottom();
 });
 
 jQuery('#message-form').on('submit', (e)=>{
     e.preventDefault();
     socket.emit('createMessage', {
-        from: 'tara',
+        
         text: jQuery('[name=message]').val()
     }, ()=>{
         jQuery('[name=message]').val('');
@@ -77,3 +130,21 @@ locationButton.on('click', ()=>{
         locationButton.removeAttr('disabled').text('Send Location');
     });
 });
+
+//deparam function
+(function($){
+    $.deparam = $.deparam || function(uri){
+      if(uri === undefined){
+        uri = window.location.search;
+      }
+      var queryString = {};
+      uri.replace(
+        new RegExp(
+          "([^?=&]+)(=([^&#]*))?", "g"),
+          function($0, $1, $2, $3) {
+              queryString[$1] = decodeURIComponent($3.replace(/\+/g, '%20'));
+          }
+        );
+        return queryString;
+      };
+  })(jQuery);
