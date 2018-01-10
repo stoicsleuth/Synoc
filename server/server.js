@@ -21,6 +21,7 @@ io.on('connection', (socket)=>{
     console.log('New User!');
     socket.on('disconnect', ()=>{
         console.log("User got disconnected");
+        socket.broadcast.emit('newMessage', generateMessage('Admin', 'User left the chat'));
     })
     //Emit custom events
     socket.emit('newMessage', generateMessage('Admin','Welcome to the chat app'));
