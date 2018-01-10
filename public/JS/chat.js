@@ -74,8 +74,12 @@ socket.on('newMessage', (message)=>{
         text: message.text,
         createdAt: formattedTime
     });
-
     jQuery('#messages').append(html);
+    jQuery('#messages li:last-child div:last-child').css('background-color',message.color);
+    if(message.from=='Admin')
+    {
+        jQuery('#messages li:last-child ').addClass("admin-style");
+    }
     scrollToBottom();
     //var formattedTime= moment(message.createdAt).format('h:mm a');
     // console.log("Got a new message!", message);

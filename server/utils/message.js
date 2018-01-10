@@ -1,11 +1,12 @@
 //This file stores utility functions regarding messages
 
 var moment = require('moment');
-var generateMessage= (from,text)=> {
+var generateMessage= (from,text,color)=> {
     return{
         from,
         text,
-        createdAt: moment().valueOf()
+        createdAt: moment().valueOf(),
+        color
     }
 };
 

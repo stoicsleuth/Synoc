@@ -17,6 +17,13 @@
     font-size: 1.5rem;
   }
   
+  .admin-style{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+
   button {
     border: none;
     background: #265f82;
@@ -172,6 +179,15 @@
     color: #999;
   }
   
+  .message_body{
+    margin-left: -5px;
+    padding: 10px;
+    background-color: crimson;
+    color: white;
+    border-radius: 20px;
+    display: inline-block;
+    min-width: 100px;
+  }
   @media (max-width: 600px) {
     * {
       font-size: 1rem;
