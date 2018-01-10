@@ -199,6 +199,7 @@
         width: 0!important;
     }
     #showLeftPush{
+        display: block;
         outline: none;
         position: absolute;
         top: 20px;
@@ -213,13 +214,13 @@
       
         opacity: 0.98;
         z-index: 0;
-        width: 79px;
+        width: 79vw;
         overflow-x: hidden;
         position: fixed;
         left: 0;
         -webkit-transition: all 0.3s ease;
         -moz-transition: all 0.3s ease;
-        transition: all 0.5s ease;
+        transition: all 0.4s ease;
     }
   
     .chat__footer {
