@@ -20,15 +20,19 @@ app.use(express.static(publicPath));
 
 
 io.on('connection', (socket)=>{
-    console.log('New User!');
+    // console.log('New User!');
 
     socket.on('join', (params,callback)=>{
             if(!isString(params.name) || !isString(params.room))
             {
                 return callback('Name and room required!');
             }
+            if( users.isUser(params.name))
+            {
+                return callback("Username taken! Please choose another one");
+            }
             socket.join(params.room);
-            users.removeUser(socket.id);
+            users.removeUser(socket.id, true);
             users.addUser(socket.id, params.name, params.room);
             console.log(users);
             io.to(params.room).emit('updateUserList', users.getUserList(params.room));
@@ -47,7 +51,7 @@ io.on('connection', (socket)=>{
 
     socket.on('disconnect', ()=>{
         console.log("User got disconnected");
-        var user= users.removeUser(socket.id);
+        var user= users.removeUser(socket.id, false);
         if(user){    
             io.to(user.room).emit('updateUserList', users.getUserList(user.room));
             io.to(user.room).emit('newMessage', generateMessage('Admin', `${user.name} has left`));

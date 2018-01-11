@@ -11,9 +11,9 @@
 //removeuser(id)
 //getUser(id)
 //getUserLisr(room)
+var i;
+var colors= ['#9b59b6','#34495e','#e74c3c','#f1c40f','#16a085','#039be5','#Sd81b60'];
 
-var colors= ['#9b59b6','#34495e','#e74c3c','#f1c40f','#16a085','039be5','d81b60'];
-var i=0;
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -25,14 +25,17 @@ class Users {
     constructor (){
         this.users=[];
         shuffleArray(colors);
+        i=0;
     }
     addUser(id, name, room){
-        var color=colors[i++];
+        
+        var color=colors[++i];
+        console.log('added',i);
         var user = {id, name, room,color};
         this.users.push(user);
         return user;
     }
-    removeUser(id)
+    removeUser(id, bool)
     {
         let removed= {};
         this.users= this.users.filter((user)=>{
@@ -43,7 +46,17 @@ class Users {
             }
             return true;
         });
+
+        if(bool==false)
+        {
+            i--;
+        }
+        console.log('removed',i);
         return removed;
+        
+    }
+    isUser(name){
+        return this.users.filter((user)=>user.name==name).length>0
     }
     getUser(id){
         return this.users.filter((user)=>user.id===id)[0];
