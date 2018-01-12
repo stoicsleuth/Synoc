@@ -29,7 +29,9 @@ class Users {
     }
     addUser(id, name, room){
         
-        var color=colors[++i];
+        ++i;
+        i=i%7;
+        var color=colors[i];
         console.log('added',i);
         var user = {id, name, room,color};
         this.users.push(user);
@@ -47,10 +49,10 @@ class Users {
             return true;
         });
 
-        if(bool==false)
-        {
-            i--;
-        }
+        // if(bool==false)
+        // {
+        //     i--;
+        // }
         console.log('removed',i);
         return removed;
         
