@@ -4,7 +4,6 @@ var socket= io();
 
 
 socket.on('getRooms', (rooms)=>{
-    console.log(rooms);
     rooms.forEach((room)=>{
         console.log(room);
         roomElem = jQuery('.rooms');
@@ -22,3 +21,9 @@ $(".roomName").on("change keyup paste", function(){
         jQuery('.roomParent').fadeIn('slow',()=>{});
     }
 })
+
+setTimeout(()=>{
+    if(document.querySelector('.rooms').options.length==0){
+    console.log('lo');
+    jQuery('.roomParent').fadeOut('slow',()=>{});
+}}, 1000);
