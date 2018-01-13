@@ -5,12 +5,19 @@
     <meta charset="utf-8" >
     <link rel="stylesheet" href="/CSS/style.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title> Chat | Choomegle</title>
-
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
+        
+        
+        
+        <!-- Emoji Data -->
+        
+
+    <title> Chat | Choomegle</title>
+
+    
 </head>
 
 <body class="chat">
@@ -25,7 +32,7 @@
         </ol>
         <div class="chat__footer">
                 <form id="message-form" action="">
-                        <input name="message" type="text" placeholder="Type your message here" autofocus autocomplete="off"/>
+                        <input class="question" name="message" type="text" placeholder="Type your message here" autofocus autocomplete="off" data-emojiable="true"/>
                         <button>Send</button>
                     </form>
                     <button id="send-location">Send Location</button>
@@ -43,9 +50,13 @@
     </button>
         
     
-</body>
-<script>
 
+
+
+</body>
+
+
+<script>
 showLeftPush.onclick = function() {
 	document.querySelector('.chat__sidebar').classList.toggle('zero-width');
 	
@@ -87,5 +98,7 @@ showLeftPush.onclick = function() {
 
 <script src="/JS/moustache.js"> </script>
 <script src="/JS/deparam.js"> </script>
+
+
 
 </html>

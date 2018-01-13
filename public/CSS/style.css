@@ -16,6 +16,20 @@
     text-align: center;
     font-size: 1.5rem;
   }
+
+  .rooms{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .rooms p{
+    border-right: 1px solid darkolivegreen;
+    font-size: 1.3em;
+    padding: 10px;
+    background: lightgrey;
+    color: darkolivegreen;
+  }
   
   .admin-style{
     align-items: center;
@@ -49,6 +63,7 @@
   
   .centered-form {
     display: flex;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
     width: 100vw;

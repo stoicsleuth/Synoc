@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Choomegle</title>
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
 </head>
 <body class="centered-form">
     <div class="centered-form__form">
@@ -26,6 +30,14 @@
                 <button>Join!</button>
             </div>
         </form>
+    </div>
+    <div class="rooms centered-form__form">
+        <h3> Active chatrooms: </h3>
+    </div>
         
 </body>
+<script src="/socket.io/socket.io.js"></script>
+
+<script src="/JS/room.js"> </script>
+
 </html>

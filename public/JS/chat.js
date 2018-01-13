@@ -33,6 +33,7 @@ function scrollToBottom(){
 
 
 socket.on('connect',()=>{
+    //console.log(io.sockets.adapter.rooms);
     var params = jQuery.deparam(window.location.search);
     // socket.emit('createMessage', {
     //     from: 'tara',
@@ -65,6 +66,9 @@ socket.on('updateUserList', (users)=>{
     });
     jQuery('#users').html(ol);
 });
+
+
+
 
 socket.on('newMessage', (message)=>{
     var formattedTime= moment(message.createdAt).format('h:mm a');

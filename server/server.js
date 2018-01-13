@@ -19,10 +19,28 @@ var port = process.env.PORT || 1234;//configuring port for Heroku or local devel
 app.use(express.static(publicPath));
 
 
+function findRooms(){
+    var availableRooms=[];
+    for(i=0;i<users.users.length;i++){
+        if(users.users[i]) {
+            let room= users.users[i].room;
+            availableRooms.push(room);
+        }
+    }
+    return availableRooms;
+}
+
+
 io.on('connection', (socket)=>{
     // console.log('New User!');
-
+    
+    
+   
+    socket.emit('getRooms',findRooms());
     socket.on('join', (params,callback)=>{
+
+
+
             if(!isString(params.name) || !isString(params.room))
             {
                 return callback('Name and room required!');
@@ -35,6 +53,8 @@ io.on('connection', (socket)=>{
             users.removeUser(socket.id, true);
             users.addUser(socket.id, params.name, params.room);
             console.log(users);
+            console.log(findRooms());
+            
             io.to(params.room).emit('updateUserList', users.getUserList(params.room));
 
             socket.emit('newMessage', generateMessage('Admin',`Welcome to ${params.room}`));
