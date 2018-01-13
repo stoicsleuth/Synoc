@@ -24,16 +24,20 @@
             </div>
             <div class="form-field">
                 <label for="room">Room name</label>
-                <input type="text" name="room" autocomplete="off" required pattern="^[a-z A-Z 0-9,.'-]+$">
+                <input type="text" class="roomName" name="room" autocomplete="off"  pattern="^[a-z A-Z 0-9,.'-]+$">
+            </div>
+            <div class="form-field roomParent">
+                    <label for="room">Or Select Room</label>
+                    <select class="rooms" name="room"></select>
             </div>
             <div class="form-field">
                 <button>Join!</button>
             </div>
         </form>
     </div>
-    <div class="rooms centered-form__form">
+    <!-- <div class="rooms centered-form__form">
         <h3> Active chatrooms: </h3>
-    </div>
+    </div> -->
         
 </body>
 <script src="/socket.io/socket.io.js"></script>
