@@ -6,7 +6,9 @@
   font-weight: 300;
   font-size: .95rem;
 }
-
+html{
+  height: 100%;
+}
 ul, li {
   list-style-position: inside;
 }
