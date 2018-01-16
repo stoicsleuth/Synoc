@@ -85,8 +85,7 @@ button:disabled {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  width: 100%;
+  
   justify-content: center;
   background: -moz-linear-gradient(135deg, rgb(88, 102, 194), rgb(114, 59, 225)); /* ff3.6+ */
   background: -webkit-gradient(135deg, rgb(88, 102, 194), rgb(114, 59, 225)); /* safari4+,chrome */
