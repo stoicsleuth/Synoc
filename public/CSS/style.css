@@ -85,7 +85,7 @@ button:disabled {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 600px;
+  height: 100vh;
   justify-content: center;
   background: -moz-linear-gradient(135deg, rgb(88, 102, 194), rgb(114, 59, 225)); /* ff3.6+ */
   background: -webkit-gradient(135deg, rgb(88, 102, 194), rgb(114, 59, 225)); /* safari4+,chrome */
@@ -253,7 +253,9 @@ button:disabled {
   .form-field{
     padding: 0px 20px;
   }
-
+  .centered-form{
+    height: 600px;
+  }
   .centered-form__form{
     width:300px;
     flex-direction: column-reverse;
