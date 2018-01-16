@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="/CSS/style.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Choomegle</title>
+    <link rel="icon" type="image/png" href="/Images/logo.png" sizes="32x32">
+    <title>Welcome | Groop</title>
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -14,9 +15,9 @@
 <body class="centered-form">
     <div class="centered-form__form">
         <form action="./chat.html">
-            <div class="form-field">
-                <h3>Welcome to Choomegle.</h3>
-                <h3> Join a chatroom</h3>
+            <div class="form-field form-field-header">
+                <h3>Welcome to <strong>Groop.</strong></h3>
+                <h3> Join a chatroom.</h3>
             </div>
             <div class="form-field">
                 <label for="name">Display name</label>
@@ -30,11 +31,15 @@
                     <label for="room">Or Select Room</label>
                     <select class="rooms" name="room"></select>
             </div>
-            <div class="form-field">
+            <div class="form-field form-field-submit">
                 <button>Join!</button>
             </div>
         </form>
+        <div class="chat-logo">
+            <img src="./Images/chat.svg" alt="Chat-logo">
+        </div>
     </div>
+    
     <!-- <div class="rooms centered-form__form">
         <h3> Active chatrooms: </h3>
     </div> -->
